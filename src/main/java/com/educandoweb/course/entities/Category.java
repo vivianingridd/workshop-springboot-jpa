@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
     @Table(name = "tb_category")
@@ -16,7 +17,8 @@ import jakarta.persistence.*;
         private Long id;
         private String name;
 
-        @Transient
+        @JsonIgnore
+        @ManyToMany(mappedBy = "categories")
         private Set<Product> products = new HashSet<>();
 
         public Category() {
